@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Café Aroma — Высококлассная кофейня</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+
+ 
+    <header>
+        <div class="container">
+          <div class="header-content">
+            <div class="logo">Café<span> Aroma</span></div>
+            <nav>
+              <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#menu">Меню</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#location">Локация</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+                <li><a class="login-link" id="loginBtn">Войти</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+    
+      <!-- Добавляем модальное окно авторизации -->
+      <div id="authModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3 class="modal-title">Вход в аккаунт</h3>
+          <form class="auth-form" id="loginForm">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Введите ваш email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Пароль</label>
+              <input type="password" id="password" placeholder="Введите пароль" required>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn">Войти</button>
+              <button type="button" class="btn btn-outline" id="registerBtn">Регистрация</button>
+            </div>
+            <div class="form-footer">
+              <a href="#" id="forgotPassword">Забыли пароль?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    
+      <section id="home" class="hero">
+        <div class="container">
+          <h1>Кофе как искусство</h1>
+          <p>Изящные вкусы, уникальные сорта и атмосфера, в которую хочется возвращаться</p>
+          <div class="btn-group">
+            <a href="#menu" class="btn">Посмотреть меню</a>
+            <a href="#location" class="btn btn-outline">Найти нас</a>
+          </div>
+        </div>
+      </section>
+    
+      <section class="menu-section">
+        <div class="container">
+          <div class="section-title">
+          <div class="menu-grid">
+            <!-- Кофе -->
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://i.pinimg.com/originals/46/fc/c2/46fcc2767aed83789f346dd310f29da3.jpg');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Эспрессо</span>
+                  <span class="menu-item-price">250 ₽</span>
+                </div>
+                <p class="menu-item-desc">Классический крепкий кофе с насыщенным вкусом и плотной пенкой</p>
+                <span class="menu-item-volume">30 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://avatars.mds.yandex.net/i?id=636108a8f88e64d26abcf2f40e721046_l-5262840-images-thumbs&n=13');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Американо</span>
+                  <span class="menu-item-price">280 ₽</span>
+                </div>
+                <p class="menu-item-desc">Эспрессо с добавлением горячей воды для более мягкого вкуса</p>
+                <span class="menu-item-volume">120 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Капучино</span>
+                  <span class="menu-item-price">320 ₽</span>
+                </div>
+                <p class="menu-item-desc">Эспрессо с молочной пеной в равных пропорциях</p>
+                <span class="menu-item-volume">180 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://avatars.mds.yandex.net/get-entity_search/118532/877034022/S600xU_2x');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Латте</span>
+                  <span class="menu-item-price">350 ₽</span>
+                </div>
+                <p class="menu-item-desc">Нежный кофейный напиток с большим количеством молока и воздушной пенкой</p>
+                <span class="menu-item-volume">250 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://avatars.mds.yandex.net/get-altay/10878699/2a00000191c2cd6e4d56ed49a5dc9ea95e7d/XXXL');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Флэт Уайт</span>
+                  <span class="menu-item-price">340 ₽</span>
+                </div>
+                <p class="menu-item-desc">Двойной эспрессо с молоком и тонким слоем микропены</p>
+                <span class="menu-item-volume">180 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://avatars.mds.yandex.net/get-entity_search/2079849/1152331183/S600xU_2x');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Раф</span>
+                  <span class="menu-item-price">380 ₽</span>
+                </div>
+                <p class="menu-item-desc">Взбитая смесь эспрессо, сливок и ванильного сиропа</p>
+                <span class="menu-item-volume">200 мл</span>
+              </div>
+            </div>
+            
+            <!-- Новые позиции -->
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://avatars.mds.yandex.net/i?id=101c356ee5fb95929020d4a4a3c7eeb3_l-10262551-images-thumbs&n=13');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Колд Брю</span>
+                  <span class="menu-item-price">400 ₽</span>
+                </div>
+                <p class="menu-item-desc">Кофе холодного заваривания с мягким вкусом и низкой кислотностью</p>
+                <span class="menu-item-volume">200 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://avatars.mds.yandex.net/get-entity_search/5098099/973339885/S600xU_2x');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Аффогато</span>
+                  <span class="menu-item-price">420 ₽</span>
+                </div>
+                <p class="menu-item-desc">Ванильное мороженое с горячим эспрессо</p>
+                <span class="menu-item-volume">150 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://sc02.alicdn.com/kf/Ud50633466f594b539deab3b1a02a6ad6j/109147389/Ud50633466f594b539deab3b1a02a6ad6j.jpg');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Какао</span>
+                  <span class="menu-item-price">320 ₽</span>
+                </div>
+                <p class="menu-item-desc">Насыщенный шоколадный напиток с молоком и взбитыми сливками</p>
+                <span class="menu-item-volume">200 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://i.siteapi.org/XK9LJv_bf9-v5rpP4US0ZTSvk4Y=/0x0:962x641/28f63cedf744de5.s.siteapi.org/img/r2u4u8movggw8ocg0kw0gccco8o0sc');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Матча Латте</span>
+                  <span class="menu-item-price">390 ₽</span>
+                </div>
+                <p class="menu-item-desc">Традиционный японский чай матча с молоком</p>
+                <span class="menu-item-volume">250 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://avatars.mds.yandex.net/i?id=c5c53e08871c15cec1ee6a95954768d8_l-11268872-images-thumbs&n=13');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Чай травяной</span>
+                  <span class="menu-item-price">300 ₽</span>
+                </div>
+                <p class="menu-item-desc">Ассорти травяных чаев: ромашка, мята, мелисса, иван-чай</p>
+                <span class="menu-item-volume">300 мл</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://steamuserimages-a.akamaihd.net/ugc/919171921180899675/6BF557673C02701C53B2F59E08813312A7F16050/');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Френч-тост</span>
+                  <span class="menu-item-price">450 ₽</span>
+                </div>
+                <p class="menu-item-desc">Хлеб бриошь с яйцом, подается с кленовым сиропом и свежими ягодами</p>
+                <span class="menu-item-volume">250 г</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Гранола</span>
+                  <span class="menu-item-price">380 ₽</span>
+                </div>
+                <p class="menu-item-desc">Домашняя гранола с йогуртом и сезонными фруктами</p>
+                <span class="menu-item-volume">200 г</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Чизкейк</span>
+                  <span class="menu-item-price">420 ₽</span>
+                </div>
+                <p class="menu-item-desc">Классический нью-йоркский чизкейк с ягодным соусом</p>
+                <span class="menu-item-volume">150 г</span>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="menu-item-info">
+                <div class="menu-item-title">
+                  <span class="menu-item-name">Тирамису</span>
+                  <span class="menu-item-price">450 ₽</span>
+                </div>
+                <p class="menu-item-desc">Итальянский десерт с кофейной пропиткой и кремом из маскарпоне</p>
+                <span class="menu-item-volume">180 г</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="section-title">
+            <h2>О нашей кофейне</h2>
+            <p>История и философия</p>
+          </div>
+          <div class="about-content">
+            <div class="about-text">
+              <h3>Как все начиналось</h3>
+              <p>Основанная в 2010 году энтузиастами кофейного дела, Café Aroma началась с маленькой кофейни на 20 мест. Сегодня это сеть из 5 заведений в Москве, но наша философия осталась неизменной — качество превыше всего.</p>
+              <p>Мы путешествуем по миру в поисках лучших сортов кофе, устанавливаем прямые контакты с фермерами и обжариваем зерна по собственным рецептам.</p>
+              <h3>Наша миссия</h3>
+              <p>Мы стремимся не просто подавать кофе, а создавать уникальный опыт. Каждая чашка у нас — это результат кропотливой работы команды профессионалов, которые искренне любят свое дело.</p>
+            </div>
+            <div class="about-img">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Интерьер Café Aroma">
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="team">
+        <div class="container">
+          <div class="section-title">
+            <h2>Наша команда</h2>
+            <p>Профессионалы с большой буквы</p>
+          </div>
+          <div class="team-grid">
+            <div class="team-card">
+              <div class="team-img" style="background-image: url('https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_65a4f593638ab46d9d06e5bf_65a5032e638ab46d9d23b144/scale_1200');"></div>
+              <div class="team-info">
+                <h3>Анна Смирнова</h3>
+                <p>Главный бариста</p>
+                <p>Чемпион России по латте-арт 2018, 2020</p>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-img" style="background-image: url('https://avatars.mds.yandex.net/i?id=3267a11baaf69a281ef259b54820a2eb_l-9098096-images-thumbs&n=13');"></div>
+              <div class="team-info">
+                <h3>Дмитрий Иванов</h3>
+                <p>Шеф-обжарщик</p>
+                <p>10 лет опыта работы с элитными сортами</p>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-img" style="background-image: url('https://img.freepik.com/premium-photo/portrait-of-smiling-barista-holding-cup-with-coffee-at-coffee-shop_650366-2312.jpg?size=626&ext=jpg');"></div>
+              <div class="team-info">
+                <h3>Елена Козлова</h3>
+                <p>Кондитер</p>
+                <p>Авторские десерты по семейным рецептам</p>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-img" style="background-image: url('https://avatars.dzeninfra.ru/get-zen_doc/1565406/pub_5e884df164a4b71b3b06026f_5e884f2bc312bf0a386fd25f/scale_1200');"></div>
+              <div class="team-info">
+                <h3>Михаил Петров</h3>
+                <p>Управляющий</p>
+                <p>Организатор московского кофейного фестиваля</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section id="location" class="location-section">
+        <div class="container">
+          <div class="section-title">
+            <h2>Наша основная кофейня</h2>
+            <p>Центральный филиал на ул. Кофейной</p>
+          </div>
+          <div class="location-content">
+            <div class="map-container">
+              <div id="map"></div>
+            </div>
+            <div class="location-info">
+              <div class="info-card">
+                <h3><i class="fas fa-map-marker-alt"></i> Адрес</h3>
+                <p>г. Москва, ул. Кофейная, 10</p>
+                <p>Вход со стороны Арбата</p>
+              </div>
+              <div class="info-card">
+                <h3><i class="fas fa-clock"></i> Часы работы</h3>
+                <p><strong>Пн-Пт:</strong> 8:00 - 23:00</p>
+                <p><strong>Сб-Вс:</strong> 9:00 - 00:00</p>
+              </div>
+              <div class="info-card">
+                <h3><i class="fas fa-subway"></i> Как добраться</h3>
+                <p>5 минут пешком от станции метро "Арбатская"</p>
+                <p>Остановка "Кофейный дом" (автобусы 39, 64, 144)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="branches-section">
+        <div class="container">
+          <div class="section-title">
+            <h2>Другие филиалы</h2>
+            <p>Посетите наши кофейни в других районах</p>
+          </div>
+          <div class="branches-grid">
+            <div class="branch-card">
+              <div class="branch-img" style="background-image: url('https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="branch-info">
+                <h3>Café Aroma на Патриарших</h3>
+                <p>Уютная кофейня в историческом центре с летней верандой</p>
+                <div class="branch-meta">
+                  <span><i class="fas fa-map-marker-alt"></i> Б. Козихинский пер., 6</span>
+                  <span><i class="fas fa-clock"></i> 8:00-23:00</span>
+                </div>
+              </div>
+            </div>
+            <div class="branch-card">
+              <div class="branch-img" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="branch-info">
+                <h3>Café Aroma в Сити</h3>
+                <p>Современное пространство для деловых встреч и работы</p>
+                <div class="branch-meta">
+                  <span><i class="fas fa-map-marker-alt"></i> Пресненская наб., 12</span>
+                  <span><i class="fas fa-clock"></i> 7:00-22:00</span>
+                </div>
+              </div>
+            </div>
+            <div class="branch-card">
+              <div class="branch-img" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="branch-info">
+                <h3>Café Aroma на Чистых</h3>
+                <p>Камерное заведение с авторской кухней и десертами</p>
+                <div class="branch-meta">
+                  <span><i class="fas fa-map-marker-alt"></i> Чистопрудный бул., 12с2</span>
+                  <span><i class="fas fa-clock"></i> 9:00-00:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="testimonials-section">
+        <div class="container">
+          <div class="section-title">
+            <h2>Отзывы</h2>
+            <p>Что говорят наши гости</p>
+          </div>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                Лучший кофе в городе! Атмосфера просто волшебная, персонал очень внимательный. Обязательно попробуйте их фирменный десерт "Кофейное наслаждение" - это нечто!
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');"></div>
+                <div class="author-info">
+                  <h4>Мария Иванова</h4>
+                  <p>Постоянный гость</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                Идеальное место для работы. Быстрый Wi-Fi, удобные розетки, вкусный кофе и никакого шума. Стал моим любимым коворкинг-кафе.
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                <div class="author-info">
+                  <h4>Алексей Петров</h4>
+                  <p>Фрилансер</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                Каждый раз, когда приезжаю в Москву, первым делом иду в Café Aroma. Их латте с корицей - это мой guilty pleasure. А бариста Анна делает самые красивые латте-арты!
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/68.jpg');"></div>
+                <div class="author-info">
+                  <h4>Екатерина Смирнова</h4>
+                  <p>Частый гость из Питера</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="cta-section">
+        <div class="container">
+          <h2>Готовы попробовать наш кофе?</h2>
+          <p>Приходите в любую из наших кофеен или закажите доставку свежеобжаренных зерен</p>
+          <a href="#location" class="btn">Найти ближайшую кофейню</a>
+        </div>
+      </section>
+    
+      <footer id="contacts">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-column">
+              <h3>Café Aroma</h3>
+              <p>Место, где кофе становится искусством. С 2010 года мы создаем уникальные кофейные впечатления.</p>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+              </div>
+            </div>
+            <div class="footer-column">
+              <h3>Меню</h3>
+              <ul>
+                <li><a href="#menu">Кофейная карта</a></li>
+                <li><a href="#menu">Десерты</a></li>
+                <li><a href="#menu">Завтраки</a></li>
+                <li><a href="#menu">Сезонные предложения</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h3>Контакты</h3>
+              <ul>
+                <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
+                <li><i class="fas fa-envelope"></i> info@cafe-aroma.ru</li>
+                <li><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Кофейная, 10</li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h3>Подписаться</h3>
+              <p>Узнавайте первыми о новых сортах кофе и специальных предложениях</p>
+              <form class="subscribe-form">
+                <input type="email" placeholder="Ваш email" required>
+                <button type="submit" class="btn">OK</button>
+              </form>
+            </div>
+          </div>
+          <div class="copyright">
+            <p>&copy; 2023 Café Aroma. Все права защищены.</p>
+          </div>
+        </div>
+      </footer>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
